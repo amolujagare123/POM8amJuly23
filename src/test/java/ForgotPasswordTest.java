@@ -1,6 +1,8 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import pages.ForgotPassword;
+import pages.Login;
 
 public class ForgotPasswordTest {
 
