@@ -1,7 +1,6 @@
 package pages.clients;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,6 +8,7 @@ public class AddClient {
     // Constructor to initialize the elements in the page
     public AddClient(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(xpath = "//input[@name='client_name']")
@@ -110,5 +110,50 @@ public class AddClient {
     public void enterClientTaxesCode(String taxesCode) {
         clientTaxesCode.sendKeys(taxesCode);
     }
+    @FindBy (xpath = "//button[@name='btn_submit']") WebElement save;
+    public void clickSave()
+    {
+        save.click();
+    }
 
+    @FindBy (xpath = "//span[@id='select2-client_language-container']")
+    WebElement languageContainer;
+    @FindBy (xpath = "//input[@role='searchbox']") WebElement searchbox;
+    public void setLanguage(String language)
+    {
+        languageContainer.click();
+        searchbox.sendKeys(language);
+        //searchbox.sendKeys(Keys.ENTER);
+        driver.findElement(By.xpath("//li[normalize-space()='"+language+"']")).click();
+    }
+    @FindBy (xpath = "//span[@id='select2-client_country-container']")
+    WebElement containerCountry;
+
+    WebDriver driver;
+    public void setCountry(String country)
+    {
+        containerCountry.click();
+        searchbox.sendKeys(country);
+        driver.findElement(By.xpath("//li[normalize-space()='"+country+"']")).click();
+    }
+
+    @FindBy (xpath = "//span[@id='select2-client_gender-container']") WebElement containerGender;
+    public void setGender(String gender)
+    {
+        containerGender.click();
+        driver.findElement(By.xpath("//li[normalize-space()='"+gender+"']")).click();
+
+    }
+
+    @FindBy (xpath = "//input[@name='client_birthdate']")
+    WebElement birthdate;
+
+    public void setBirthdate(String date)
+    {
+        /*birthdate.sendKeys(date);
+        birthdate.sendKeys(Keys.ENTER);*/
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value','"+date+"')",birthdate);
+    }
 }
