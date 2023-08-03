@@ -1,11 +1,7 @@
-package Clients;
+package regression.Clients;
 
 import Base.DoLogin;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.Login;
 import pages.Menu;
 import pages.clients.AddClient;
 

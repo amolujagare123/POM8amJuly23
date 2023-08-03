@@ -9,11 +9,11 @@ public class Menu {
 
     @FindBy (xpath = "//a[@class='hidden-md']")
     WebElement dashboard;
-    @FindBy (xpath = "//span[normalize-space()='Clients']")
+    @FindBy (xpath = "//span[normalize-space()='regression.Clients']")
     WebElement clients;
     @FindBy (xpath = "//a[contains(text(),'Add Client')]")
     WebElement addClient;
-    @FindBy (xpath = "//a[normalize-space()='View Clients']")
+    @FindBy (xpath = "//a[normalize-space()='View regression.Clients']")
     WebElement viewClients;
     @FindBy (xpath = "//span[normalize-space()='Quotes']")
     WebElement quotes;

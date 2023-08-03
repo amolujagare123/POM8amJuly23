@@ -1,4 +1,4 @@
-package DataProvider.util;
+package util;
 
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
