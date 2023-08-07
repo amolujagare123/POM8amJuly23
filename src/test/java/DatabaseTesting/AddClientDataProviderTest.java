@@ -10,9 +10,12 @@ import pages.clients.AddClient;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.time.Duration;
 import java.util.ArrayList;
 
 import static util.FoDataProvider.getMyData;
+import static utility.Conversion.*;
 
 public class AddClientDataProviderTest extends DoLogin {
 
@@ -20,14 +23,17 @@ public class AddClientDataProviderTest extends DoLogin {
     public void addClientTest(String clientName, String clientSurname, String language, String streetAddress1,
                               String streetAddress2, String city, String state, String zipCode, String country,
                               String gender, String birthdate, String phoneNumber, String faxNumber, String mobileNumber,
-                              String emailAddress, String webAddress, String vatId, String taxesCode) throws ClassNotFoundException, SQLException {
+                              String emailAddress, String webAddress, String vatId, String taxesCode) throws ClassNotFoundException, SQLException, ParseException {
         Menu menu = new Menu(driver);
+
+     //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
         menu.clickAddClient();
 
         ArrayList<String> expected = new ArrayList<>();
         expected.add(clientName);
         expected.add(clientSurname);
-        expected.add(language);
+        expected.add(language.toLowerCase());
         expected.add(streetAddress1);
         expected.add(streetAddress2);
         expected.add(city);
@@ -89,9 +95,17 @@ public class AddClientDataProviderTest extends DoLogin {
             actual.add(rs.getString("client_city"));
             actual.add(rs.getString("client_state"));
             actual.add(rs.getString("client_zip"));
-            actual.add(rs.getString("client_country"));
-            actual.add(rs.getString("client_gender"));
-            actual.add(rs.getString("client_birthdate"));
+
+            String shortCountry = rs.getString("client_country");
+
+            String longFormCountry = covertCountry(shortCountry);
+
+            actual.add(longFormCountry);
+
+            actual.add(getGender(rs.getString("client_gender")));
+
+
+            actual.add(convertDate(rs.getString("client_birthdate")));
             actual.add(rs.getString("client_phone"));
             actual.add(rs.getString("client_fax"));
             actual.add(rs.getString("client_mobile"));
@@ -106,7 +120,7 @@ public class AddClientDataProviderTest extends DoLogin {
 
         // Add assertions or verifications as needed
 
-   //     Assert.assertEquals(actual,expected);
+         Assert.assertEquals(actual,expected);
 
     }
 
