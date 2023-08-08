@@ -13,16 +13,24 @@ public class Login {
 */
 
     @FindBy(id = "email")
-    WebElement txtUsername;
+    public WebElement txtUsername;
 
     @FindBy(id = "password")
-    WebElement txtPassword;
+    public WebElement txtPassword;
 
     @FindBy(xpath = "//button[@type='submit']")
-    WebElement btnLogin;
+    public WebElement btnLogin;
 
     @FindBy(xpath = "//a[@class='btn btn-default']")
-    WebElement forgotPassword;
+    public  WebElement forgotPassword;
+
+    @FindBy (xpath = "//label[@for='email']")
+    public WebElement lblEmail;
+
+    @FindBy (xpath = "//label[@for='password']")
+    public WebElement lblPassword;
+    @FindBy (xpath = "//img[@class='login-logo img-responsive']")
+    public WebElement logoIcon;
 
     public void clickForgotPassword()
     {
