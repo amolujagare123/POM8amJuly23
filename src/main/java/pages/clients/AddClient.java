@@ -110,7 +110,12 @@ public class AddClient {
     public void enterClientTaxesCode(String taxesCode) {
         clientTaxesCode.sendKeys(taxesCode);
     }
-    @FindBy (xpath = "//button[@name='btn_submit']") WebElement save;
+    @FindBy (xpath = "//input[@name='client_active']")
+    public WebElement active;
+    @FindBy (xpath = "//button[@name='btn_cancel']")
+    public  WebElement cancel;
+    @FindBy (xpath = "//button[@name='btn_submit']")
+    public WebElement save;
     public void clickSave()
     {
         save.click();

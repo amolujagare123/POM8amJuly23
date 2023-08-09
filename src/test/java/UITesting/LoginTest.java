@@ -6,8 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.Login;
 
-import static Base.UITestBase.enability;
-import static Base.UITestBase.visibility;
+import static Base.UITestBase.*;
 
 public class LoginTest extends OpenUrl {
     Login login;
@@ -78,4 +77,73 @@ public class LoginTest extends OpenUrl {
         boolean actual = enability(login.btnLogin);
         Assert.assertEquals(actual,expected,"login text box is enabled");
     }
+
+    // ------- Check watermark -----
+
+    @Test
+    public void txtUsernameWatermarkCheck()
+    {
+        String expected = "Email";
+        String actual = getValueOfAttribute(login.txtUsername, "placeholder");
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong value of watermark");
+    }
+
+    @Test
+    public void txtPasswordWatermarkCheck()
+    {
+        String expected = "Password";
+        String actual = getValueOfAttribute(login.txtPassword, "placeholder");
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong value of watermark");
+    }
+
+    // ---- spellCheck -----
+
+    @Test
+    public void lblEmailSpellCheck()
+    {
+        String expected = "Email";
+        String actual = spellCheck(login.lblEmail);
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong spelling");
+
+    }
+
+    @Test
+    public void lblPasswordSpellCheck()
+    {
+        String expected = "Password";
+        String actual = spellCheck(login.lblPassword);
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong spelling");
+
+    }
+
+    // ---- Font related tests -----
+
+    @Test
+    public void lblEmailFontCheck()
+    {
+        String expected  = "14px";
+        String actual = getValueOfStyle(login.lblEmail,"font-size");
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong font-size");
+    }
+
+    @Test
+    public void lblEmailFontFamily()
+    {
+        String expected  = "-apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif";
+        String actual = getValueOfStyle(login.lblEmail,"font-family");
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+        Assert.assertEquals(actual,expected,"wrong font");
+    }
+
 }
